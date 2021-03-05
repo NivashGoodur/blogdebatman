@@ -1,0 +1,106 @@
+{# Utilisation du squelette de page base.html.twig #}
+{% extends 'base.html.twig' %}
+
+{# Titre de la page #}
+{% block title %}Accueil{% endblock %}
+
+{# Contenu de la page #}
+{% block body %}
+
+    <div class="container-fluid">
+
+        {# Affichage des messages flashs de type "success" si il y en a #}
+        {% include 'partials/flashes/success.html.twig' %}
+
+        {# Titre h1 #}
+        <div class="row">
+            <h1 class="col-12 text-center my-5">Le Blog de Batman</h1>
+        </div>
+
+        {# Contenus lorems ipsum pour habiller un peu l'accueil #}
+        <div class="row">
+
+            <h2 class="text-center col-12 my-4">Lorem ipsum dolor sit amet, consectetur.</h2>
+
+            <p class="col-12 col-md-10 offset-md-1 text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aut cumque dicta dignissimos eum minus molestias nostrum officiis optio quas qui, recusandae sapiente ullam! Accusamus culpa dolorum eius eos ex fugiat harum id iusto, nam possimus praesentium repellendus repudiandae similique unde, veritatis voluptatibus voluptatum? Ab molestiae mollitia qui sequi suscipit.</p>
+        </div>
+
+        {# Affichage d'une div avec une cover de batman, paramétrée dans le CSS plus bas dans le fichier actuel #}
+        <div class="batman-cover row my-5"></div>
+
+        {# Affichage des derniers articles #}
+        <div class="row">
+            <div class="col-12 col-md-8 offset-md-2">
+
+                {# H2 #}
+                <div class="row">
+                    <h2 class="col-12 text-center">Dernières publications</h2>
+                </div>
+
+                {# Si il n'y a pas d'articles à afficher, message en conséquence #}
+                {% if articles is empty %}
+
+                    <div class="row">
+                        <p class="col-12 text-center alert alert-warning my-4">Aucune publication à afficher.</p>
+                    </div>
+
+                {% else %}
+
+                    <div class="row">
+
+                        {# Boucle pour parcourir tous les articles à afficher #}
+                        {% for article in articles %}
+
+                            <div class="col-12">
+                                <div class="card my-3 bg-black">
+
+                                    {# Titre de l'article, cliquable vers la page détaillée de l'article #}
+                                    <div class="card-header">
+                                        <a href="{{ path('blog_publication_view', { slug: article.slug }) }}"><i class="far fa-newspaper mr-2"></i>{{ article.title }}</a>
+                                    </div>
+
+                                    <div class="card-body">
+                                        {# Affichage du contenu de l'article, tronqué à 150 caractères, sans balises html, suivi de "..." et d'un lien "lire la suite" #}
+                                        <div class="mb-2">
+                                            {{ article.content|striptags|slice(0, 150) }}... <a href="{{ path('blog_publication_view', { slug: article.slug }) }}">Lire la suite</a>
+                                        </div>
+                                        {# Affichage de la date de publication et du pseudonyme de l'auteur #}
+                                        <footer class="blockquote-footer">Publié le <strong>{{ article.publicationDate|date('d/m/Y à H\\hi') }}</strong> par <strong>{{ article.author.pseudonym }}</strong></footer>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+        </div>
+
+        <div class="row mb-5">
+
+            <h2 class="text-center col-12 my-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h2>
+
+            <p class="col-12 col-md-10 offset-md-1 text-center mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis incidunt maiores nobis quisquam rerum! Beatae commodi, deleniti distinctio eos facere iure labore neque odio placeat provident quaerat quas quasi repudiandae sit ut? Ab ad, amet delectus ducimus ea ex illo itaque iure iusto laborum minima mollitia nam, omnis quidem quisquam sit sunt, ut veniam voluptates voluptatibus. Eius eveniet itaque praesentium quisquam reiciendis rem. Ab accusamus aperiam at dicta eius impedit incidunt laudantium magni necessitatibus nesciunt, obcaecati, officiis sit totam. Amet.</p>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{# Fichiers CSS individuels de la page #}
+{% block stylesheets %}
+
+    {# La définition du CSS pour l'image est faite ici car on aurait pas pu générer le lien avec "asset()" dans le fichier styles.css #}
+    <style>
+        .batman-cover{
+            background-image: url('{{ asset('images/batman-cover.png') }}');
+            background-attachment: fixed;
+            background-size: cover;
+            height: 400px;
+        }
+    </style>
+{% endblock %}

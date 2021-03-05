@@ -1,0 +1,59 @@
+{# Utilisation du squelette de page base.html.twig #}
+{% extends 'base.html.twig' %}
+
+{# Titre de la page #}
+{% block title %}Connexion{% endblock %}
+
+{# Contenu de la page #}
+{% block body %}
+
+    <div class="container-fluid">
+
+        {# Affichage des messages flashs de type "success" si il y en a #}
+        {% include 'partials/flashes/success.html.twig' %}
+        {# Affichage des messages flashs de type "error" si il y en a #}
+        {% include 'partials/flashes/error.html.twig' %}
+
+        {# Titre h1 #}
+        <div class="row">
+            <h1 class="col-12 text-center my-5">Connexion</h1>
+        </div>
+
+        {# Formulaire de connexion #}
+        <div class="row">
+            <div class="col-12 col-md-4 offset-md-4">
+
+                <form method="POST">
+
+                    {# Si le formulaire de connexion possède une erreur, on l'affiche #}
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    {# Champ email #}
+                    <div class="form-group">
+                        <label for="inputEmail">Email</label>
+                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+                    </div>
+
+                    {# Champ mot de passe #}
+                    <div class="form-group">
+                        <label for="inputPassword">Password</label>
+                        <input type="password" name="password" id="inputPassword" class="form-control" required>
+                    </div>
+
+                    {# Champ invisible token anti attaque CSRF #}
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                    {# Bouton de validation #}
+                    <input type="submit" class="btn btn-outline-primary col-12">
+                </form>
+
+                {# Lien vers la page de mot de passe perdu #}
+                <p class="my-3"><a href="{{ path('main_forgot_password_request') }}">J'ai perdu mon mot de passe</a></p>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

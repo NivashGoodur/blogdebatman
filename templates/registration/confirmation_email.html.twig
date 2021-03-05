@@ -1,0 +1,9 @@
+<h1>Activation de votre compte sur leblogdebatman.fr</h1>
+
+<p>Bonjour, merci pour votre inscription sur le site leblogdebatman.fr !</p>
+<p>Veuillez cliquer sur le lien ci-dessous pour activer votre compte :</p>
+{# Utilisation de url() plutôt que de path() car le lien est envoyé dans un email, et doit donc être absolu pour être fonctionnel #}
+<p><a href="{{ signedUrl|raw }}">{{ signedUrl|raw }}</a></p>
+<p>Ce lien expirera dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.</p>
+
+<p>À bientôt !</p>

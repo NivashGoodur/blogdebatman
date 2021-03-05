@@ -1,0 +1,49 @@
+{# Utilisation du squelette de page base.html.twig #}
+{% extends 'base.html.twig' %}
+
+{# Titre de la page #}
+{% block title %}Modification de la photo de profil{% endblock %}
+
+{# Contenu de la page #}
+{% block body %}
+
+    <div class="container-fluid">
+
+        {# Affichage des messages flashs de type "success" si il y en a #}
+        {% include 'partials/flashes/success.html.twig' %}
+
+        {# H1 #}
+        <div class="row">
+            <h1 class="col-12 text-center my-5">Modification de la photo de profil</h1>
+        </div>
+
+        <div class="container-fluid">
+
+            {# Affichage du formulaire de changement de photo de profil #}
+            <div class="row">
+                <div class="col-12 col-md-8 offset-md-2 bg-dark p-3">
+                    <div class="row">
+                        <div class="col-12 col-md-6 offset-md-3 change-photo-form">
+                            {{ form(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{# Fichiers JS individuels de la page #}
+{% block javascripts %}
+    <script>
+
+        // Code jQuery permettant d'afficher dynamiquement un texte ainsi que le nom du fichier actuellement sélectionné sur l'ordinateur dans le champ d'upload de photo
+        $('.change-photo-form .custom-file-label').text('Choisir un fichier');
+        $('.change-photo-form .custom-file-input').on('change',function(){
+            $(this).next('.custom-file-label').html($(this).val().replace('C:\\fakepath\\', " "));
+        })
+    </script>
+{% endblock %}

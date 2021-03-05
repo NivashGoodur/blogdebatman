@@ -1,0 +1,33 @@
+{# Utilisation du squelette de page base.html.twig #}
+{% extends 'base.html.twig' %}
+
+{# Titre de la page #}
+{% block title %}Modification d'une publication{% endblock %}
+
+{# Contenu de la page #}
+{% block body %}
+
+    <div class="container-fluid">
+
+        {# Titre h1 #}
+        <div class="row">
+            <h1 class="col-12 text-center my-5">Modification d'une publication</h1>
+        </div>
+
+        {# Lien pour retourner sur l'article #}
+        <div class="row">
+            <p class="text-center col-12"><a href="{{ path('blog_publication_view', {slug: form.vars.value.slug}) }}">Revenir sur l'article</a></p>
+        </div>
+
+        {# Affichage du formulaire de modification d'article #}
+        <div class="row">
+            <div class="col-12 col-md-8 offset-md-2">
+
+                {# L'attribut action du formulaire doit être généré car ce dernier contient l'id de l'article à modifier #}
+                {{ form(form, {attr: {'action' : path('blog_publication_edit', { id: form.vars.value.id })}}) }}
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

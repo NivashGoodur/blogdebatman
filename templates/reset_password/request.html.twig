@@ -1,0 +1,31 @@
+{# Utilisation du squelette de page base.html.twig #}
+{% extends 'base.html.twig' %}
+
+{# Titre de la page #}
+{% block title %}Mot de passe perdu{% endblock %}
+
+{# Contenu de la page #}
+{% block body %}
+
+    <div class="container-fluid">
+
+        {# Affichage des messages flashs de type "reset_password_error" si il y en a #}
+        {% for flashError in app.flashes('reset_password_error') %}
+            <div class="alert alert-danger my-3" role="alert">{{ flashError }}</div>
+        {% endfor %}
+
+        {# h1 #}
+        <div class="row">
+            <h1 class="col-12 text-center my-5">Mot de passe perdu</h1>
+        </div>
+
+        {# Formulaire de demande de reset de mot de passe #}
+        <div class="row">
+            <div class="col-12 col-md-4 offset-md-4">
+                <p class="mb-4">Entrez votre adresse email et un lien de ré-initialisation de mot de passe vous sera envoyé.</p>
+                {{ form(requestForm) }}
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

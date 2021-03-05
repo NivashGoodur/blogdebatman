@@ -1,0 +1,60 @@
+{# Utilisation du squelette de page base.html.twig #}
+{% extends 'base.html.twig' %}
+
+{# Titre de la page #}
+{% block title %}Créer un compte{% endblock %}
+
+{# Contenu de la page #}
+{% block body %}
+
+    <div class="container-fluid">
+
+        {# Titre h1 #}
+        <div class="row">
+            <h1 class="col-12 text-center my-5">Créer un compte</h1>
+        </div>
+
+        {# Formulaire d'inscription #}
+        <div class="row">
+            <div class="col-12 col-md-4 offset-md-4">
+
+                {# Ouverture du formulaire #}
+                {{ form_start(registrationForm) }}
+
+                {# Affichage des erreurs générales du formulaire #}
+                {{ form_errors(registrationForm) }}
+
+                {# Champ email #}
+                {{ form_row(registrationForm.email) }}
+                {# Champ mot de passe #}
+                {{ form_row(registrationForm.plainPassword) }}
+                {# Champ pseudonyme #}
+                {{ form_row(registrationForm.pseudonym) }}
+
+                {# Affichage du recaptcha #}
+                <div class="form-group my-4">
+                    <p class="mb-2">Captcha de sécurité</p>
+
+                    {# La clé est récupérée dans le paramètre global paramétré dans le fichier config/packages/twig.yaml #}
+                    <div class="g-recaptcha" data-sitekey="{{ google_recaptcha_site_key }}"></div>
+                </div>
+
+                {# Bouton de validation #}
+                {{ form_row(registrationForm.save) }}
+
+                {# Fermeture du formulaire #}
+                {{ form_end(registrationForm) }}
+
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{# Fichiers CSS individuels de la page #}
+{% block stylesheets %}
+
+    {# Le choix du block stylecheets pour mettre ce fichier CSS n'est pas une erreur car Google préconise d'inclure ce fichier dans le head #}
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+{% endblock %}

@@ -1,0 +1,8 @@
+<p>Bonjour, pour modifier votre mot de passe, vous devez cliquer sur le lien suivant :</p>
+
+{# Utilisation de url() plutôt que de path() car le lien est envoyé dans un email, et doit donc être absolu pour être fonctionnel #}
+<a href="{{ url('main_reset_password', {token: resetToken.token}) }}">{{ url('main_reset_password', {token: resetToken.token}) }}</a>
+
+<p>Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>
+
+<p>À bientôt !</p>

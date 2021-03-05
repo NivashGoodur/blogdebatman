@@ -1,0 +1,11 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+
+
+    # Activation du thème Bootstrap 4 pour habiller les formulaires générés par Symfony sur le site
+    form_themes: ['bootstrap_4_layout.html.twig']
+
+    # Paramètres globaux, accessibles dans tous les fichiers Twig du site
+    globals:
+        site_name: 'Le Blog de Batman'
+        google_recaptcha_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'

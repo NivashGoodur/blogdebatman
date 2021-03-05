@@ -1,0 +1,22 @@
+{# Utilisation du squelette de page base.html.twig #}
+{% extends 'base.html.twig' %}
+
+{# Titre de la page #}
+{% block title %}Email envoyé pour réinitialisation de mot de passe{% endblock %}
+
+{# Contenu de la page #}
+{% block body %}
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12 alert alert-info text-center my-5">
+                <p>Si ce compte existe bien, un email contenant un lien de réinitialisation de mot de passe a été envoyé !</p>
+                <p><strong>Attention, le lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</strong></p>
+                <p>Si vous ne recevez pas l'email, vérifiez vos spams. Sinon ré-essayez en <a href="{{ path('main_forgot_password_request') }}">cliquant ici</a>.</p>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{# Utilisation du squelette de page base.html.twig #}
+{% extends 'base.html.twig' %}
+
+{# Titre de la page #}
+{% block title %}Modifiez votre mot de passe{% endblock %}
+
+{# Contenu de la page #}
+{% block body %}
+
+    <div class="container-fluid">
+
+        {# h1 #}
+        <div class="row">
+            <h1 class="col-12 text-center my-5">Modifiez votre mot de passe</h1>
+        </div>
+
+        {# Formulaire de changement de mot de passe #}
+        <div class="row">
+            <div class="col-12 col-md-4 offset-md-4">
+                {{ form(resetForm) }}
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

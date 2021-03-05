@@ -1,0 +1,29 @@
+{# Utilisation du squelette de page base.html.twig #}
+{% extends 'base.html.twig' %}
+
+{# Titre de la page #}
+{% block title %}Nouvelle publication{% endblock %}
+
+{# Contenu de la page #}
+{% block body %}
+
+    <div class="container-fluid">
+
+        {# Affichage des messages flashs de type "success" si il y en a #}
+        {% include 'partials/flashes/success.html.twig' %}
+
+        {# H1 #}
+        <div class="row">
+            <h1 class="col-12 text-center my-5">Nouvelle Publication</h1>
+        </div>
+
+        {# Formulaire de création d'un nouvel article #}
+        <div class="row">
+            <div class="col-12 col-md-8 offset-md-2">
+                {{ form(form) }}
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
